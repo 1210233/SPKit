@@ -156,7 +156,7 @@ extension SPBaseViewController {
     /**
      *  返回上一级控制器。
      */
-    @IBAction public
+    @IBAction open
     func backViewController() {
         if let navi = self.navigationController {
             if navi.viewControllers.count == 1 {
@@ -180,7 +180,7 @@ extension SPBaseViewController {
         }
     }
     
-    public
+    open
     func pushViewController(_ vc: UIViewController?) {
         guard let viewController = vc else {
             return
@@ -255,7 +255,7 @@ extension SPBaseViewController {
     }
     open
     func loginSuccessNotification(_ notification: Notification) {
-        
+        // 供子类重载
     }
 }
 
@@ -291,7 +291,7 @@ extension SPBaseViewController {
 }
 
 extension SPBaseViewController {
-     public
+    public
     func callPhone(_ phone: String) -> Bool {
         if phone.isEmpty {
             return false

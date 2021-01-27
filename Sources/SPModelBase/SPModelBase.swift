@@ -72,7 +72,7 @@ open class SPModelBase: NSObject, SPModel {
     /**
      * Create instances from an array which has included NSDictionary instances.
      */
-    public static
+    public class
     func from(dics: [[String : Any]]) -> [SPModel] {
         var array = [SPModel]()
         dics.filterNullValues().forEach { (d) in
