@@ -8,6 +8,7 @@
 import UIKit
 import SPUIKitCategory
 
+@objc
 class SPBaseTableViewCell: UITableViewCell {
    
     /**
@@ -40,6 +41,7 @@ class SPBaseTableViewCell: UITableViewCell {
         }
     }
     
+    @objc
     func configSelectedBackgroundView() {
         let view = UIView()
         view.isUserInteractionEnabled = false
@@ -84,7 +86,7 @@ class SPBaseTableViewCell: UITableViewCell {
      *  初始化子视图样式。父类在视图加载时自动调用。
      *  （供子类重载）。
      */
-    public
+    @objc public
     func setupSubviews() {
         #if DEBUG
         print(String(format: "%@:子类 -> %@ 重载方法错误. %@", "SPBaseTableViewCell", NSStringFromClass(Self.self), "***子类需重载此方法，且无需调用 [super setupSubviews]。***"))
@@ -97,7 +99,7 @@ class SPBaseTableViewCell: UITableViewCell {
      *  @param failureContinue 登录成功后继续之前的操作
      *  @return 返回是已否登录
      */
-    public
+    @objc public
     func ensureHadLoginIfFailed(_ failureContinue: () -> Void) -> Bool {
         // 根据业务逻辑重载
         return false

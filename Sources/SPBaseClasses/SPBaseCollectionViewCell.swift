@@ -7,6 +7,7 @@
 
 import UIKit
 
+@objc 
 class SPBaseCollectionViewCell : UICollectionViewCell {
     deinit {
         self.removeObserver(self, forKeyPath: "reuseIdentifier", context: nil)
@@ -38,7 +39,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
      *  初始化子视图样式。父类在视图加载时自动调用。
      *  （供子类重载）。
      */
-    public
+    @objc public
     func setupSubviews() {
         #if DEBUG
         print("%@:子类 -> %@ 重载方法错误. %@", "SPBaseCollectionViewCell", NSStringFromClass(Self.self), "***子类需重载此方法，且无需调用 [super setupSubviews]。***");
@@ -52,7 +53,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
      *  @param reuseIdentifier 重用标识符
      *  （供子类重载）。
      */
-    public
+    @objc public
     func configFor(reuseIdentifier: String) {
         // 供子类重载
     }
@@ -63,7 +64,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
      *  @param failureContinue 登录成功后继续之前的操作
      *  @return 返回是已否登录
      */
-    public
+    @objc public
     func ensureHadLoginIfFailed(_ failureContinue: () -> Void) -> Bool {
         // 供子类重载
         return false
@@ -113,6 +114,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
     
     private
     var _highlightedView: UIView?
+    public
     var highlightedView: UIView {
         if _highlightedView == nil {
             _highlightedView = UIView()

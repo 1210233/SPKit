@@ -7,7 +7,7 @@
 
 import UIKit
 
-open
+@objc open
 class SPBaseViewController: UIViewController, UIGestureRecognizerDelegate {
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -58,28 +58,28 @@ class SPBaseViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     #if DEBUG
-    open
+    @objc open
     func setupSubviews() {
         print("SPBaseViewController:子类 -> \(Self.self) 重载方法错误. ***子类需重载此方法，且无需调用 [super setupSubviews]。***")
     }
-    open
+    @objc open
     func setupNavigationItems() {
         print("SPBaseViewController:子类 -> \(Self.self) 重载方法错误. ***子类需重载此方法，且无需调用 [super setupNavigationItems]。***")
     }
-    open
+    @objc open
     func initialization() {
         print("SPBaseViewController:子类 -> \(Self.self) 重载方法错误. ***子类需重载此方法，且无需调用 [super initialization]。***")
     }
     #else
-    open
+    @objc open
     func setupSubviews() {
         // ***子类需重载此方法，且无需调用 [super setupSubviews]。***
     }
-    open
+    @objc open
     func setupNavigationItems() {
         // ***子类需重载此方法，且无需调用 [super setupNavigationItems]。***
     }
-    open
+    @objc open
     func initialization() {
         // ***子类需重载此方法，且无需调用 [super initialization]。***
     }
@@ -100,7 +100,7 @@ class SPBaseViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    open
+    @objc open
     func refreshContent(_ notification: Notification) {
         // 供子类实现.
     #if DEBUG
@@ -124,7 +124,7 @@ var sp_firstAppearKey = "sp_firstAppearKey"
 
 @objc
 extension UIViewController {
-    @objc open
+    open
     var canSerialPush: Bool {
         return true
     }
@@ -146,9 +146,8 @@ extension UIViewController {
 }
 
 
-
+@objc
 extension SPBaseViewController {
-//    @objc open
     open override
     var canSerialPush: Bool {
         return false
@@ -213,14 +212,15 @@ extension SPBaseViewController {
         }
     }
     
-    @objc public
+    public
     func showLoginView() {
         if self.view.window != nil {
             self.gotoLogin(success: nil)
         }
+        _ = #selector(Self.userDidLogout)
     }
     
-    @objc open
+    open
     func userDidLogout() {
         // 供子类重载
     }
@@ -247,7 +247,7 @@ extension SPBaseViewController {
         }
     }
     
-    @objc public
+    public
     func loginSuccessHandle(_ notification: Notification) {
         if self.isViewLoaded {
             self.loginSuccessNotification(notification)
