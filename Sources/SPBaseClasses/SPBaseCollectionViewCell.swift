@@ -7,13 +7,13 @@
 
 import UIKit
 
-@objc 
+@objc open
 class SPBaseCollectionViewCell : UICollectionViewCell {
     deinit {
         self.removeObserver(self, forKeyPath: "reuseIdentifier", context: nil)
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         self.addObserver(self, forKeyPath: "reuseIdentifier", options: .new, context: nil)
     }
@@ -29,7 +29,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
     @IBInspectable public
     var highlightEnabled: Bool = true
 
-    override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         self.setupSubviews()
     }
@@ -70,7 +70,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
         return false
     }
 
-    override var isSelected: Bool {
+    open override var isSelected: Bool {
         get {
             return super.isSelected
         }
@@ -79,7 +79,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
         }
     }
     
-    override var isHighlighted: Bool {
+    open override var isHighlighted: Bool {
         get {
             return super.isHighlighted
         }
@@ -102,7 +102,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
             }
         }
     }
-    override var bounds: CGRect {
+    open override var bounds: CGRect {
         get {
             return super.bounds
         }
@@ -125,7 +125,7 @@ class SPBaseCollectionViewCell : UICollectionViewCell {
         return _highlightedView!
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == nil || keyPath! != "reuseIdentifier"{
             return
         }
