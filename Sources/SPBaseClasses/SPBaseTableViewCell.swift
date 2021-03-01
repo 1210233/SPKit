@@ -8,7 +8,7 @@
 import UIKit
 import SPUIKitCategory
 
-@objc
+@objc open
 class SPBaseTableViewCell: UITableViewCell {
    
     /**
@@ -30,11 +30,11 @@ class SPBaseTableViewCell: UITableViewCell {
         self.setupSubviews()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    override func awakeFromNib() {
+    open override func awakeFromNib() {
         self.setupSubviews()
         if highlightEnabled {
             self.configSelectedBackgroundView()
@@ -49,10 +49,10 @@ class SPBaseTableViewCell: UITableViewCell {
         self.selectedBackgroundView = view
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    open override func setSelected(_ selected: Bool, animated: Bool) {
         self.setHighlighted(selected, animated: animated)
     }
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if !self.highlightEnabled {
             return
         }
@@ -119,13 +119,13 @@ extension SPBaseTableViewCell {
     struct SeparatorLineFrame {
         
         /// 左边到父视图的间距
-        var leftSpacing: CGFloat
+        public var leftSpacing: CGFloat
         /// 右边到父视图的间距
-        var rightSpacing: CGFloat
+        public var rightSpacing: CGFloat
         /// 垂直方向到父视图的间距
-        var verticalSpacing: CGFloat
+        public var verticalSpacing: CGFloat
         /// 线条高度
-        var height: CGFloat
+        public var height: CGFloat
         
         public static
         let `default`: Self = {
@@ -209,20 +209,20 @@ extension SPBaseTableViewCell {
 typealias CellSeparatorLineFrame = SPBaseTableViewCell.SeparatorLineFrame
 extension CellSeparatorLineFrame: CustomStringConvertible {
     
-    init<T>(l: T, r: T, v: T, h: T) where T: BinaryInteger {
+    public init<T>(l: T, r: T, v: T, h: T) where T: BinaryInteger {
         leftSpacing = CGFloat(l)
         rightSpacing = CGFloat(r)
         verticalSpacing = CGFloat(v)
         height = CGFloat(h)
     }
-    init<T>(l: T, r: T, v: T, h: T) where T: BinaryFloatingPoint {
+    public init<T>(l: T, r: T, v: T, h: T) where T: BinaryFloatingPoint {
         leftSpacing = CGFloat(l)
         rightSpacing = CGFloat(r)
         verticalSpacing = CGFloat(v)
         height = CGFloat(h)
     }
     
-    var description: String {
+    public var description: String {
         return String(format: "{L:%.6lf, R:%.6lf, V:%.6lf, H:%.6lf}", leftSpacing, rightSpacing, verticalSpacing, height)
     }
 }
